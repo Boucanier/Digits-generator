@@ -1,9 +1,8 @@
-from drawDigits import *
+import drawDigits, os
 
 if __name__ == "__main__" :
+    os.system("rm output/*.png")
     listDigitsImg = list()
 
     for i in range(10) :
-        img = Image.new('L', (500, 500), color = "white")
-        drawDigit(i, ImageDraw.Draw(img))
-        img.save("output/numero-" + str(i) + ".png")
+        drawDigits.generateImg(i, 10)

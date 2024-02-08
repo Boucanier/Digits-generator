@@ -19,7 +19,7 @@ R = W - M
 # Top y and left x coordinate
 T = L = M
 
-def drawDigit(digit: int, img: ImageDraw.ImageDraw) :
+def drawDigit(digit: int, img: ImageDraw.ImageDraw) -> None:
     if digit == 0 :
         img.line((L, T, R, T), fill = "black", width = 4)
         img.line((L, T, L, B), fill = "black", width = 4)
@@ -78,4 +78,19 @@ def drawDigit(digit: int, img: ImageDraw.ImageDraw) :
         img.line((L, H * 5/10, R, H * 5/10), fill = "black", width = 4)
         img.line((R, T, R, B), fill = "black", width = 4)
         img.line((L, B, R, B), fill = "black", width = 4)
-        
+
+
+def generateImg(num: int, n: int) -> None:
+    """
+        Generate n images of digit num
+
+        - Args:
+            - num: int
+                The digit to draw
+            - n: int
+                The number of images to generate
+    """
+    for i in range(n):
+        img = Image.new('L', (W, H), color = "white")
+        drawDigit(num, ImageDraw.Draw(img))
+        img.save("output/numero-" + str(num) + "-" + str(i) + ".png")
