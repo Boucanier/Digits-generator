@@ -1,64 +1,81 @@
 from PIL import Image, ImageDraw
 import random
 
+# Height
+H = 500
+
+# Width
+W = 500
+
+# Margin
+M = 70
+
+# Bottom y coordinate
+B = H - M
+
+# Right x coordinate
+R = W - M
+
+# Top y and left x coordinate
+T = L = M
 
 def drawDigit(digit: int, img: ImageDraw.ImageDraw) :
     if digit == 0 :
-        img.line((20, 20, 80, 20), fill = "black", width = 4)
-        img.line((20, 20, 20, 80), fill = "black", width = 4)
-        img.line((80, 20, 80, 80), fill = "black", width = 4)
-        img.line((20, 80, 80, 80), fill = "black", width = 4)
+        img.line((L, T, R, T), fill = "black", width = 4)
+        img.line((L, T, L, B), fill = "black", width = 4)
+        img.line((R, T, R, B), fill = "black", width = 4)
+        img.line((L, B, R, B), fill = "black", width = 4)
     elif digit == 1 :
-        img.line((50, 20, 50, 80), fill = "black", width = 4)
+        img.line((W * 5/10, T, W * 5/10, B), fill = "black", width = 4)
     elif digit == 2 :
-        img.line((20, 20, 80, 20), fill = "black", width = 4)
-        img.line((80, 20, 80, 50), fill = "black", width = 4)
-        img.line((20, 50, 80, 50), fill = "black", width = 4)
-        img.line((20, 50, 20, 80), fill = "black", width = 4)
-        img.line((20, 80, 80, 80), fill = "black", width = 4)
+        img.line((L, T, R, T), fill = "black", width = 4)
+        img.line((R, T, R, H * 5/10), fill = "black", width = 4)
+        img.line((L, H * 5/10, R, H * 5/10), fill = "black", width = 4)
+        img.line((L, H * 5/10, L, B), fill = "black", width = 4)
+        img.line((L, B, R, B), fill = "black", width = 4)
     elif digit == 3 :
-        img.line((20, 20, 80, 20), fill = "black", width = 4)
-        img.line((80, 20, 80, 80), fill = "black", width = 4)
-        img.line((20, 50, 80, 50), fill = "black", width = 4)
-        img.line((20, 80, 80, 80), fill = "black", width = 4)
+        img.line((L, T, R, T), fill = "black", width = 4)
+        img.line((R, T, R, B), fill = "black", width = 4)
+        img.line((L, H * 5/10, R, H * 5/10), fill = "black", width = 4)
+        img.line((L, B, R, B), fill = "black", width = 4)
     elif digit == 4 :
-        img.line((20, 20, 20, 50), fill = "black", width = 4)
-        img.line((20, 50, 80, 50), fill = "black", width = 4)
-        img.line((80, 20, 80, 80), fill = "black", width = 4)
+        img.line((L, T, L, H * 5/10), fill = "black", width = 4)
+        img.line((L, H * 5/10, R, H * 5/10), fill = "black", width = 4)
+        img.line((R, T, R, B), fill = "black", width = 4)
     elif digit == 5 :
-        img.line((20, 20, 80, 20), fill = "black", width = 4)
-        img.line((20, 20, 20, 50), fill = "black", width = 4)
-        img.line((20, 50, 80, 50), fill = "black", width = 4)
-        img.line((80, 50, 80, 80), fill = "black", width = 4)
-        img.line((20, 80, 80, 80), fill = "black", width = 4)
+        img.line((L, T, R, T), fill = "black", width = 4)
+        img.line((L, T, L, H * 5/10), fill = "black", width = 4)
+        img.line((L, H * 5/10, R, H * 5/10), fill = "black", width = 4)
+        img.line((R, H * 5/10, R, B), fill = "black", width = 4)
+        img.line((L, B, R, B), fill = "black", width = 4)
     elif digit == 6 :
-        img.line((20, 20, 80, 20), fill = "black", width = 4)
-        img.line((20, 20, 20, 80), fill = "black", width = 4)
-        img.line((20, 50, 80, 50), fill = "black", width = 4)
-        img.line((80, 50, 80, 80), fill = "black", width = 4)
-        img.line((20, 80, 80, 80), fill = "black", width = 4)
+        img.line((L, T, R, T), fill = "black", width = 4)
+        img.line((L, T, L, B), fill = "black", width = 4)
+        img.line((L, H * 5/10, R, H * 5/10), fill = "black", width = 4)
+        img.line((R, H * 5/10, R, B), fill = "black", width = 4)
+        img.line((L, B, R, B), fill = "black", width = 4)
     elif digit == 7 :
         offSetRightBottom = random.randint(0, 50)
         offSetLeftTop = random.randint(-10, 10)
-        offSetMid = random.randint(-10, 10)
+        offSetMid = random.randint(-3, 3)
 
-        img.line((30, 20 + offSetLeftTop, 80, 20), fill = "black", width = 4)
-        img.line((80, 20, 80 - offSetRightBottom, 80), fill = "black", width = 4)
-        withBar = random.choice([True, True, False])
+        img.line((W * 3/10, T + offSetLeftTop, R, T), fill = "black", width = 4)
+        img.line((R, T, R - offSetRightBottom, B), fill = "black", width = 4)
+        withBar = random.choice([True, True, True, False])
 
         if withBar :
-            img.line((50 - offSetRightBottom / 3, 50 - offSetMid, 90 + offSetRightBottom / 3, 50 - offSetMid), fill = "black", width = 4)
+            img.line((W * 5/10 - offSetRightBottom / 3, H * 5/10 - offSetMid, R + offSetRightBottom / 3, H * 5/10 + offSetMid), fill = "black", width = 4)
 
     elif digit == 8 :
-        img.line((20, 20, 80, 20), fill = "black", width = 4)
-        img.line((20, 20, 20, 80), fill = "black", width = 4)
-        img.line((20, 50, 80, 50), fill = "black", width = 4)
-        img.line((80, 20, 80, 80), fill = "black", width = 4)
-        img.line((20, 80, 80, 80), fill = "black", width = 4)
+        img.line((L, T, R, T), fill = "black", width = 4)
+        img.line((L, T, L, B), fill = "black", width = 4)
+        img.line((L, H * 5/10, R, H * 5/10), fill = "black", width = 4)
+        img.line((R, T, R, B), fill = "black", width = 4)
+        img.line((L, B, R, B), fill = "black", width = 4)
     elif digit == 9 :
-        img.line((20, 20, 80, 20), fill = "black", width = 4)
-        img.line((20, 20, 20, 50), fill = "black", width = 4)
-        img.line((20, 50, 80, 50), fill = "black", width = 4)
-        img.line((80, 20, 80, 80), fill = "black", width = 4)
-        img.line((20, 80, 80, 80), fill = "black", width = 4)
+        img.line((L, T, R, T), fill = "black", width = 4)
+        img.line((L, T, L, H * 5/10), fill = "black", width = 4)
+        img.line((L, H * 5/10, R, H * 5/10), fill = "black", width = 4)
+        img.line((R, T, R, B), fill = "black", width = 4)
+        img.line((L, B, R, B), fill = "black", width = 4)
         
