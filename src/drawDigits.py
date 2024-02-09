@@ -21,12 +21,11 @@ T = L = M
 
 def drawDigit(digit: int, img: ImageDraw.ImageDraw) -> None:
     if digit == 0 :
-        img.line((L, T, R, T), fill = "black", width = random.randint(3, 6))
-        img.line((L, T, L, B), fill = "black", width = random.randint(3, 6))
-        img.line((R, T, R, B), fill = "black", width = random.randint(3, 6))
-        img.line((L, B, R, B), fill = "black", width = random.randint(3, 6))
+        bottomToTop = random.choice(list(range(30,100,5)))
+        img.ellipse((L+bottomToTop, T, R-bottomToTop, B), fill="white", outline="black", width=random.randint(3,6))
     elif digit == 1 :
-        img.line((W * 5/10, T, W * 5/10, B), fill = "black", width = random.randint(3, 6))
+        offSetMainBarBot = random.choice(list(range(-1,2)))
+        img.line((W * 12/20, T, W * (12+offSetMainBarBot)/20, B), fill = "black", width = random.randint(3, 6))
     elif digit == 2 :
         img.line((L, T, R, T), fill = "black", width = random.randint(3, 6))
         img.line((R, T, R, H * 5/10), fill = "black", width = random.randint(3, 6))
