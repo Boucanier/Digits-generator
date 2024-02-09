@@ -161,3 +161,8 @@ cython_debug/
 
 # Output files
 output/
+
+
+# IDE files
+.vscode/
+.idea/
