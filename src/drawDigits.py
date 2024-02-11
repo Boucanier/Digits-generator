@@ -25,7 +25,15 @@ def drawDigit(digit: int, img: ImageDraw.ImageDraw) -> None:
         img.ellipse((L+bottomToTop, T, R-bottomToTop, B), fill="white", outline="black", width=random.randint(3,6))
     elif digit == 1 :
         offSetMainBarBot = random.choice(list(range(-1,2)))
-        img.line((W * 12/20, T, W * (12+offSetMainBarBot)/20, B), fill = "black", width = random.randint(3, 6))
+        img.line((W * 18/30, T, W * (18+offSetMainBarBot)/30, B), fill = "black", width = random.randint(3, 6))
+        topBarLen = random.choice(list(range(100,200,20)))
+        offSetTopBar = random.choice(list(range(50,100,10)))
+        img.line((W * 18/30, T, W * 18/30 - topBarLen, T + offSetTopBar), fill = "black", width = random.randint(3, 6))
+        withBottomBar = random.choice([True, False])
+        if withBottomBar:
+            bottomBarLen = random.choice(list(range(70, 150, 10)))
+            offSetBottomBar = random.choice(list(range(-10, 10, 5)))
+            img.line((W * (18+offSetMainBarBot)/30 - bottomBarLen//2, B + offSetBottomBar, W * (18+offSetMainBarBot)/30 + bottomBarLen//2, B - offSetBottomBar), fill = "black", width = random.randint(3, 6))
     elif digit == 2 :
         img.line((L, T, R, T), fill = "black", width = random.randint(3, 6))
         img.line((R, T, R, H * 5/10), fill = "black", width = random.randint(3, 6))
