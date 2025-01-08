@@ -19,6 +19,15 @@ R = W - M
 # Top y and left x coordinate
 T = L = M
 
+def add_noise(img: Image.Image) -> None:
+    assert isinstance(img, Image.Image), "img should be an instance of PIL.Image.Image"
+    draw = ImageDraw.Draw(img)
+    for _ in range(random.randint(5, 150)):
+        x = random.randint(0, W)
+        y = random.randint(0, H)
+        draw.point((x, y), fill="black")
+
+
 def drawDigit(digit: int, img: ImageDraw.ImageDraw) -> None:
     if digit == 0 :
         bottomToTop = random.choice(list(range(30,100,5)))
@@ -31,11 +40,12 @@ def drawDigit(digit: int, img: ImageDraw.ImageDraw) -> None:
         offSetTopBar = random.choice(list(range(50,100,10)))
         img.line((W * 18//30, T, W * 18//30 - topBarLen, T + offSetTopBar), fill = "black", width = random.randint(3, 6))
         withBottomBar = random.choice([True, False])
+
         if withBottomBar:
             bottomBarLen = random.choice(list(range(70, 150, 10)))
             offSetBottomBar = random.choice(list(range(-10, 10, 5)))
             img.line((W * (18+offSetMainBarBot)//30 - bottomBarLen//2, B + offSetBottomBar, W * (18+offSetMainBarBot)//30 + bottomBarLen//2, B - offSetBottomBar), fill = "black", width = random.randint(3, 6))
-    
+
     elif digit == 2 :
         img.line((L, T, R, T), fill = "black", width = random.randint(3, 6))
         img.line((R, T, R, H * 5//10), fill = "black", width = random.randint(3, 6))
@@ -108,4 +118,5 @@ def generateImg(num: int, n: int) -> None:
     for i in range(n):
         img = Image.new('L', (W, H), color = "white")
         drawDigit(num, ImageDraw.Draw(img))
+        add_noise(img)
         img.save("output/numero-" + str(num) + "-" + str(i) + ".png")
