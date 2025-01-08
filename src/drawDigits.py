@@ -47,11 +47,10 @@ def drawDigit(digit: int, img: ImageDraw.ImageDraw) -> None:
             img.line((W * (18+offSetMainBarBot)//30 - bottomBarLen//2, B + offSetBottomBar, W * (18+offSetMainBarBot)//30 + bottomBarLen//2, B - offSetBottomBar), fill = "black", width = random.randint(3, 6))
 
     elif digit == 2 :
-        img.line((L, T, R, T), fill = "black", width = random.randint(3, 6))
-        img.line((R, T, R, H * 5//10), fill = "black", width = random.randint(3, 6))
-        img.line((L, H * 5//10, R, H * 5//10), fill = "black", width = random.randint(3, 6))
-        img.line((L, H * 5//10, L, B), fill = "black", width = random.randint(3, 6))
-        img.line((L, B, R, B), fill = "black", width = random.randint(3, 6))
+        img.ellipse((L+(M//2), T//2, R-(M//2), H-M*3), fill="white", outline="black", width=random.randint(3,6))
+        img.rectangle((L, ((T//2) + (H-M*3))//2, R, H-M), fill="white", outline="black", width=0)
+        img.line((L+(M//2), H-M, R-(M//2), ((T//2) + (H-M*3))//2), fill="black", width=random.randint(3,6))
+        img.line((L+(M//2), H-M, R-(M//4), H-M), fill="black", width=random.randint(3,6))
 
     elif digit == 3 :
         img.line((L, T, R, T), fill = "black", width = random.randint(3, 6))
